@@ -1,0 +1,12 @@
+<h1> webcut</h1>
+<form action="{% url 'files:actionfile' %}" method='post' enctype='multipart/form-data'>
+{% csrf_token %}
+{{ form.as_p }}
+<div>
+<p><p><input type='file' name='filename'></p>
+<p><input type='submit' value='Upload' name='upload'></p></p>
+</div>
+<div>
+<p><input type='submit' value='Download' name='download'></p>
+</div>
+</form>

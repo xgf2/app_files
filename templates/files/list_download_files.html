@@ -1,0 +1,7 @@
+
+<h1> webcut</h1>
+<h3> download file</h3>
+{% for content in contents %}
+<p><a href = {% url 'files:downloadfile' user_id=content.user.id content_id=content.id %}>  {{ content.file.name }} </a>
+  ---  {{ content.date_time|date:'d.m.Y' }} --- {{ content.date_time_delete|date:'d.m.Y' }} </p>
+{% endfor %}
