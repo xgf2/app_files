@@ -19,13 +19,16 @@ class Content(models.Model):
 
 # Functions
 
-def save_user_file(request):
+def find_or_create_user(request):
 	try:
 		user = User.objects.get(username = request.user)
 	except User.DoesNotExist:
 		user = User.objects.create_user(username = request.POST.get('username'), password = request.POST.get('password'))
 		user.save()
 	finally:
+		return user
+
+def save_user_file(request, user):
 		user_file = Content(user = user, file = request.FILES.get('filename'), date_time_delete = datetime.now() + timedelta(days = 180))
 		user_file.save()
 

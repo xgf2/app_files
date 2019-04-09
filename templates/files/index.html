@@ -1,12 +1,21 @@
+
+{% load static %}
+
 <h1> webcut</h1>
-<form action="{% url 'files:actionfile' %}" method='post' enctype='multipart/form-data'>
+<form action="{% url 'files:authenticateuser' %}" method='post' enctype='multipart/form-data'>
 {% csrf_token %}
+{% if not request.user.is_authenticated %}
 {{ form.as_p }}
-<div>
+<input type="checkbox" name="newidentifier" value="registration"> Register new Identifier <br>
+{% else %}
+<p><a href = "{% url 'files:logoutwebcut' %}"> logout </a></p>
+{% endif %}
+{{ request.user.username }}
 <p><p><input type='file' name='filename'></p>
-<p><input type='submit' value='Upload' name='upload'></p></p>
+<div>
+<p><input type='submit' name='upload' value='Upload'></p></p>
 </div>
 <div>
-<p><input type='submit' value='Download' name='download'></p>
+<p><input type='submit' name='download' value='Download'></p>
 </div>
 </form>

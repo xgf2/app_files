@@ -7,7 +7,8 @@ app_name = 'files'
 
 urlpatterns = [
         path('index', views.index, name='index'),
-        path('actionfile', views.action_file, name='actionfile'),
+        path('authenticateuser', views.authenticate_user, name='authenticateuser'),
 		path('downloadfile/<int:user_id>/<int:content_id>', views.download_file, name='downloadfile'),
-        path('loginview', auth_views.LoginView.as_view())
+        path('logoutwebcut', views.logout_webcut, name='logoutwebcut'),
+        path('listuploadedfiles', views.list_uploaded_files, name='listuploadedfiles'),
         ]
